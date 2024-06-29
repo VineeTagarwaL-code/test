@@ -75,6 +75,7 @@ const fetchPrices = async (eventId) => {
         }
       )
       .then(async (res) => await res?.json());
+    const listings = res?.listings;
     let minPrice = Infinity;
     if (listings.length == 0) return null;
     for (const listing of listings) {
