@@ -53,6 +53,9 @@ app.get("/vividSeatsPrice", async (req, res) => {
       return res
         .status(400)
         .json({ min: "No tickets available or event Not Found" });
+    console.log(
+      `[ ${timeNow} ] - Min price fetched for vivid event ${artistName}-${eventDateTime} is ${eventData.minPrice}`
+    );
     return res.status(200).json({ eventData });
   } catch (err) {
     console.log(err);

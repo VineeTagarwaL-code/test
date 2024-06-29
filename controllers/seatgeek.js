@@ -75,8 +75,6 @@ const fetchPrices = async (eventId) => {
         }
       )
       .then(async (res) => await res?.json());
-    console.log(res);
-    const listings = res?.listings;
     let minPrice = Infinity;
     if (listings.length == 0) return null;
     for (const listing of listings) {
@@ -84,11 +82,7 @@ const fetchPrices = async (eventId) => {
         minPrice = listing.p;
       }
     }
-    for (let listing of listings) {
-      if (listing.p == 54) {
-        return listing;
-      }
-    }
+    return minPrice;
   } catch (err) {
     console.log(err);
   }
