@@ -52,6 +52,7 @@ const getVividSeatsMinPrice = async (artistName, eventDateTime) => {
     return {minPrice,eventURL};
   } catch (error) {
     console.error("Error occurred:", error);
+    return null;
   }
 };
 
