@@ -1,30 +1,22 @@
-# Start with Ubuntu base image
-FROM ubuntu:20.04
-
-# Set environment variables
-ENV NODE_VERSION=20
-ENV DEBIAN_FRONTEND=noninteractive
-
-# Update and install necessary packages
-RUN apt-get update && \
-    apt-get install -y curl && \
-    curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x | bash - && \
-    apt-get install -y nodejs && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+# Start with Node.js base image
+FROM node:21
 
 # Create and set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
-COPY package.json /app
+# Install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
-# Copy the rest of the application code
-COPY . /app
+# Comment out the problematic lines in download.js
+RUN sed -i 's/process.stdout.clearLine(0);/\/\/ process.stdout.clearLine(0);/' /app/node_modules/node-tls-client/dist/utils/download.js
+RUN sed -i 's/process.stdout.cursorTo(0);/\/\/ process.stdout.cursorTo(0);/' /app/node_modules/node-tls-client/dist/utils/download.js
 
-# Expose the necessary port
-EXPOSE 3001
+# Copy application code
+COPY . .
 
-# Start the application
+# Expose port
+EXPOSE 3000
+
+# Command to run the application
 CMD ["node", "index.js"]

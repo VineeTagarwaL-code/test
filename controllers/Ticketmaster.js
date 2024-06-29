@@ -1,7 +1,11 @@
 import { fetch } from "node-tls-client";
+
+
 const getTicketMasterPrice = async (eventId) => {
   try {
     let minPrice = Infinity;
+
+    const proxyUrl = 'http://203.122.6.29:8080'; 
 
     await fetch(
       `https://services.ticketmaster.com/api/ismds/event/${eventId}/quickpicks?mode=primary:ppsectionrow+resale:ga_areas+platinum:all&includeResale=true&embed=offer&apikey=b462oi7fic6pehcdkzony5bxhe&apisecret=pquzpfrfz7zd2ylvtz3w5dtyse&sort=totalprice`,
@@ -17,10 +21,13 @@ const getTicketMasterPrice = async (eventId) => {
           referer: "https://www.ticketmaster.com/",
           priority: "u=1",
         },
+        agentOptions: {
+          socksHost: proxyUrl,
+          socksPort: 1080, 
+        },
       }
     ).then(async (response) => {
       let res = await response.json();
-      console.log(res);
       const listings = res?._embedded?.offer;
 
       if (!listings) return;
@@ -33,7 +40,7 @@ const getTicketMasterPrice = async (eventId) => {
     });
     return minPrice;
   } catch (err) {
-    console.log(err);
+    console.error('Error:', err);
     return null;
   }
 };
