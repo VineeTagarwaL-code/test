@@ -46,10 +46,13 @@ const getVividSeatsMinPrice = async (artistName, eventDateTime) => {
       console.log("No events found");
       return;
     }
-    console.log(event.minPrice);
+    const minPrice=event.minPrice;
+    const eventURL="https://www.vividseats.com"+event.webPath;
+    console.log({minPrice,eventURL});
+    return {minPrice,eventURL};
   } catch (error) {
     console.error("Error occurred:", error);
   }
 };
 
-getVividSeatsMinPrice("Charli XCX", "2024-09-23T01:30:00Z");
+export { getVividSeatsMinPrice };
