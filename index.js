@@ -46,6 +46,7 @@ app.get("/ticketMasterPrice/:eventId", async (req, res) => {
 });
 app.get("/vividSeatsPrice", async (req, res) => {
   try {
+    const timeNow = new Date().toLocaleString();
     const artistName = req.headers.artistname;
     const eventDateTime = req.headers.eventdatetime;
     const eventData = await getVividSeatsMinPrice(artistName, eventDateTime);
