@@ -5,8 +5,8 @@ const getTicketMasterPrice = async (eventId) => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: `https://services.ticketmaster.com/api/ismds/event/${eventId}/quickpicks?includeStandard=true&includeResale=true&includePlatinumInventoryType=true&ticketTypes=000000000001&embed=area&embed=offer&embed=description&apikey=b462oi7fic6pehcdkzony5bxhe&apisecret=pquzpfrfz7zd2ylvtz3w5dtyse&resaleChannelId=internal.ecommerce.consumer.desktop.web.browser.ticketmaster.us&limit=40&offset=0&sort=totalprice`,
-      headers: {
+      url: `https://services.ticketmaster.com/api/ismds/event/${eventId}/quickpicks?mode=primary:ppsectionrow+resale:ga_areas+platinum:all&includeResale=true&embed=offer&apikey=b462oi7fic6pehcdkzony5bxhe&apisecret=pquzpfrfz7zd2ylvtz3w5dtyse&sort=totalprice`,    
+       headers: {
         "User-Agent":
           "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0",
         Accept: "*/*",
