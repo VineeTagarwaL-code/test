@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const getTicketMasterPrice = async (eventId) => {
+  
   try {
     let config = {
       method: "get",
@@ -13,12 +14,8 @@ const getTicketMasterPrice = async (eventId) => {
         "Accept-Language": "en-US,en;q=0.5",
         "Accept-Encoding": "gzip, deflate, br, zstd",
         "TMPS-Correlation-Id": "47a5f4d7-d282-419c-b981-b85799317586",
-        Origin: "https://www.ticketmaster.com",
         Connection: "keep-alive",
         Referer: "https://www.ticketmaster.com/",
-        "Sec-Fetch-Dest": "empty",
-        "Sec-Fetch-Mode": "cors",
-        "Sec-Fetch-Site": "same-site",
         Priority: "u=1",
       },
     };
