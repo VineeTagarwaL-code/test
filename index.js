@@ -33,9 +33,8 @@ app.get("/ticketMasterPrice/:eventId", async (req, res) => {
   try {
     const timeNow = new Date().toLocaleString();
     const eventId = req.params.eventId
-    console.log(eventId)
     const prices = await getTicketMasterPrice(eventId);
-    if (prices == null) return res.status(400).json({min: "No tickets available or event Not Found"})
+    // if (prices == null) return res.status(400).json({min: "No tickets available or event Not Found"})
     console.log(
       `[ ${timeNow} ] - Min price fetched for ticketMaster event id ${eventId} is ${prices}`
     );

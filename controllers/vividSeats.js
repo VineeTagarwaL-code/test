@@ -52,4 +52,4 @@ const getVividSeatsMinPrice = async (artistName, eventDateTime) => {
   }
 };
 
-getVividSeatsMinPrice("Charli XCX", "2024-09-25T01:30:00Z");
+getVividSeatsMinPrice("Charli XCX", "2024-09-23T01:30:00Z");
