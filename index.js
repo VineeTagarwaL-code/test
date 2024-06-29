@@ -32,7 +32,7 @@ app.post("/getSeatGeekPrices", async (req, res) => {
 app.get("/ticketMasterPrice/:eventId", async (req, res) => {
   try {
     const timeNow = new Date().toLocaleString();
-    const eventId = req.params.eventId
+    const eventId = req.params.eventId;
     const prices = await getTicketMasterPrice(eventId);
     // if (prices == null) return res.status(400).json({min: "No tickets available or event Not Found"})
     console.log(
@@ -45,19 +45,18 @@ app.get("/ticketMasterPrice/:eventId", async (req, res) => {
 });
 app.get("/vividSeatsPrice", async (req, res) => {
   try {
-    console.log(req.headers);
     const artistName = req.headers.artistname;
     const eventDateTime = req.headers.eventdatetime;
-    console.log(artistName, eventDateTime);
     const eventData = await getVividSeatsMinPrice(artistName, eventDateTime);
-    if (eventData.minPrice == null) return res.status(400).json({min: "No tickets available or event Not Found"})
+    if (eventData == null)
+      return res
+        .status(400)
+        .json({ min: "No tickets available or event Not Found" });
     return res.status(200).json({ eventData });
   } catch (err) {
     console.log(err);
   }
-}
-);
-
-app.listen(80, () => {
-  console.log("Server is running on port 3000");
+});
+app.listen(3001, () => {
+  console.log("Server is running on port 3001");
 });
