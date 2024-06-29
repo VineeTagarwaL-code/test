@@ -20,6 +20,7 @@ const getTicketMasterPrice = async (eventId) => {
       }
     ).then(async (response) => {
       let res = await response.json();
+      console.log(res);
       const listings = res?._embedded?.offer;
 
       if (!listings) return;
@@ -32,6 +33,7 @@ const getTicketMasterPrice = async (eventId) => {
     });
     return minPrice;
   } catch (err) {
+    console.log(err);
     return null;
   }
 };
