@@ -23,7 +23,7 @@ app.post("/getSeatGeekPrices", async (req, res) => {
     console.log(
       `[ ${timeNow} ] - Min price fetched for seatgeek event id ${eventId} is ${prices}`
     );
-    return res.json(prices);
+
     return res.status(200).json({ min: prices });
   } catch (err) {
     console.log(err);
