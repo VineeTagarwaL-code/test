@@ -1,10 +1,11 @@
 import express from "express";
 import cors from "cors";
-
 const app = express();
 import { getVividSeatsMinPrice } from "./controllers/vividSeats.js";
 import { fetchPrices } from "./controllers/seatgeek.js";
 import { getTicketMasterPrice } from "./controllers/Ticketmaster.js";
+import { fetchStubhubMinPrice } from "./controllers/stubhub.js";
+
 app.use(express.json());
 app.use(
   cors({
@@ -62,6 +63,24 @@ app.get("/vividSeatsPrice", async (req, res) => {
     console.log(err);
   }
 });
-app.listen(80, () => {
+app.get("/stubhubPrice", async (req, res) => {
+  try {
+    const timeNow = new Date().toLocaleString();
+    const artistName = req.headers.artistname;
+    const eventDateTime = req.headers.eventdatetime;
+    const eventData = await fetchStubhubMinPrice(artistName, eventDateTime);
+    if (eventData == null)
+      return res
+        .status(400)
+        .json({ min: "No tickets available or event Not Found" });
+    console.log(
+      `[ ${timeNow} ] - Min price fetched for stubhub event ${artistName}-${eventDateTime} is ${eventData.minPrice}`
+    );
+    return res.status(200).json({ eventData });
+  } catch (err) {
+    console.log(err);
+  }
+});
+app.listen(4000, () => {
   console.log("Server is running on port 3001");
 });
