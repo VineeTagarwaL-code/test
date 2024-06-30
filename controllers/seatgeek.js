@@ -79,8 +79,8 @@ const fetchPrices = async (eventId) => {
     let minPrice = Infinity;
     if (listings.length == 0) return null;
     for (const listing of listings) {
-      if (listing.p < minPrice) {
-        minPrice = listing.p;
+      if (listing.p + listing.dp < minPrice) {
+        minPrice = listing.p + listing.dp;
       }
     }
     return minPrice;
