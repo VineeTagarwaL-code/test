@@ -43,3 +43,4 @@ const getTicketMasterPrice = async (eventId) => {
 };
 
 getTicketMasterPrice("3000608CCDD928C7").then((res) => console.log(res));
+export { getTicketMasterPrice };
