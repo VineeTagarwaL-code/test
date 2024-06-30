@@ -7,7 +7,7 @@ const getTicketMasterPrice = async (eventId) => {
     await fetch(
       `https://services.ticketmaster.com/api/ismds/event/${eventId}/quickpicks?mode=primary:ppsectionrow+resale:ga_areas+platinum:all&includeResale=true&embed=offer&apikey=b462oi7fic6pehcdkzony5bxhe&apisecret=pquzpfrfz7zd2ylvtz3w5dtyse&sort=totalprice`,
       {
-        proxy: `http://gurbinder8727:as3Yf3Mg4WsSStDv_country-India@proxy.packetstream.io:31112`,
+        proxy: `http://9AOJ3CyVgpOJNQnr:MjwRbEOoFPkn5mK6@geo.iproyal.com:12321`,
         headers: {
           "user-agent":
             "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:127.0) Gecko/20100101 Firefox/127.0",
@@ -42,5 +42,4 @@ const getTicketMasterPrice = async (eventId) => {
   }
 };
 
-getTicketMasterPrice("3000608CCDD928C7").then((res) => console.log(res));
 export { getTicketMasterPrice };
